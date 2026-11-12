@@ -152,7 +152,7 @@ p{font-size:1.05rem}
 
 /* ---------- Footer ---------- */
 footer{min-height:70svh;display:grid;place-items:end center;text-align:center;color:var(--ivory);padding:0 1.5rem 3rem;
-  background:linear-gradient(180deg,var(--ivory) 0%,rgba(58,10,20,.1) 6%,rgba(58,10,20,.5) 55%,rgba(58,10,20,.95) 100%),url('couple-1.jpg') center 30%/cover no-repeat;background-color:var(--oxblood)}
+  background:linear-gradient(180deg,var(--ivory) 0%,rgba(58,10,20,.1) 6%,rgba(58,10,20,.5) 55%,rgba(58,10,20,.95) 100%),url('couple-3.jpg') center 30%/cover no-repeat;background-color:var(--oxblood)}
 footer .deva{font-family:var(--deva);color:var(--gold-light);font-size:1.15rem}
 footer .big{font-family:var(--display);font-size:2.4rem;font-weight:500;color:var(--gold-light);line-height:1.1;margin:.4rem 0}
 footer p{opacity:.9}
@@ -175,8 +175,9 @@ footer p{opacity:.9}
   <div class="door left"></div>
   <div class="door right"></div>
   <div class="gate-content">
+    <div class="ganesha">ॐ</div>
     <div class="deva">॥ श्री गणेशाय नमः ॥</div>
-    <p class="small">With the blessings of our families</p>
+    <p class="small">WE ARE GETTING MARRIED</p>
     <h1>Shweta<span>&amp;</span>Nikhil</h1>
     <button class="btn" id="openBtn" type="button">Open Invitation</button>
   </div>
@@ -191,14 +192,19 @@ footer p{opacity:.9}
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
   <div class="hero-top">
+    <div class="ganesha">ॐ</div>
     <div class="deva">॥ श्री गणेशाय नमः ॥</div>
     <p>Together with their families</p>
   </div>
   <div class="hero-bottom">
     <h1 class="names">Shweta<span class="amp">&amp;</span>Nikhil</h1>
     <!-- EDIT: date text -->
-    <p class="when">Sunday, 13 December 2026</p>
-    <p class="where">Hotel Vitthal Mangalam, Satara</p>
+    <!-- <p class="when">Sunday, 13 December 2026</p>
+    <p class="where">Hotel Vitthal Mangalam, Satara</p> -->
+    <p class="hero-scroll">
+      Please scroll down to view the wedding venue
+      and location details.
+    </p>
     <a href="#message" class="down" aria-label="Scroll down">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg>
     </a>
@@ -214,14 +220,33 @@ footer p{opacity:.9}
     <p>Two hearts, two families, one beautiful beginning.</p>
     <p>We joyfully invite you to bless Shweta and Nikhil as they begin their new journey together.</p>
     <p>Your presence will make our celebration complete.</p>
-    <p class="sign">With love, the families of Shweta &amp; Nikhil</p>
+    <p class="sign">With love and warm regards</p>
+  </div>
+</section>
+
+<!-- ================= SAVE THE DATE ================= -->
+
+<section class="save-date green" id="save-date">
+  <div class="wrap">
+    <p class="eyebrow">A BEAUTIFUL BEGINNING</p>
+    <h2>Save the Date</h2>
+    <p>Mark your Calendar</p>
+    <p>Because something beautiful is about to begin.</p>
+
+    <div class="date-display">
+      <span>DECEMBER</span>
+      <strong>13</strong>
+      <span>2026</span>
+    </div>
+
+    <p class="save-day">SUNDAY</p>
   </div>
 </section>
 
 <!-- ================= COUNTDOWN ================= -->
 <section class="dark" id="countdown">
   <div class="wrap">
-    <h2>Counting down to the big day</h2>
+    <h2>Until Forever Begins</h2>
     <p class="days-big" id="daysBig">&nbsp;</p>
     <div class="count" aria-live="off">
       <div><b id="cd-d">00</b><span>Days</span></div>
@@ -241,14 +266,14 @@ footer p{opacity:.9}
     <div class="timeline">
       <!-- EDIT: events and timings (add or remove blocks as needed) -->
       <div class="event">
-        <h3>Wedding Ceremony</h3>
-        <div class="t">10:30 AM</div>
-        <p>Sacred vows and the blessings of our elders.</p>
+        <h3>Haldi Ceremony</h3>
+        <div class="t">10 AM</div>
+        <p>Turmeric Tales</p>
       </div>
       <div class="event">
-        <h3>Wedding Lunch</h3>
-        <div class="t">1:00 PM</div>
-        <p>Join us for a festive meal with family and friends.</p>
+        <h3>Wedding Ceremony</h3>
+        <div class="t">5:46 PM</div>
+        <p>Sacred vows and the blessings of our elders.</p>
       </div>
     </div>
   </div>
@@ -257,8 +282,8 @@ footer p{opacity:.9}
 <!-- ================= SCRATCH CARD ================= -->
 <section class="green" id="scratch">
   <div class="wrap">
-    <h2>A little surprise</h2>
-    <p class="scratch-note">Scratch the golden card with your finger to meet the couple.</p>
+    <h2>A Little Surprise</h2>
+    <p class="scratch-note">Scratch to reveal ♥️</p>
     <div class="card" id="card">
       <div class="card-inner">
         <img src="couple-2.jpg" alt="Shweta and Nikhil laughing together among pink bougainvillea">
@@ -285,7 +310,7 @@ footer p{opacity:.9}
 </section>
 
 <!-- ================= RSVP ================= -->
-<section class="light rsvp" id="rsvp">
+<!-- <section class="light rsvp" id="rsvp">
   <div class="wrap">
     <svg class="orn" viewBox="0 0 150 22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 11h56M92 11h56"/><path d="M75 2l9 9-9 9-9-9z" fill="currentColor"/><circle cx="62" cy="11" r="2" fill="currentColor"/><circle cx="88" cy="11" r="2" fill="currentColor"/></svg>
     <h2>Will you join us?</h2>
@@ -297,7 +322,7 @@ footer p{opacity:.9}
     </div>
     <p class="hint">Your reply opens in WhatsApp, ready to send.</p>
   </div>
-</section>
+</section> -->
 </main>
 
 <footer>
@@ -314,7 +339,7 @@ footer p{opacity:.9}
    EDIT THESE
    ===================================================== */
 const CONFIG = {
-  weddingDate: '2026-12-13T10:30:00+05:30',   // ceremony start (India time)
+  weddingDate: '2026-12-13T10:00:00+05:30',   // ceremony start (India time)
   rsvpWhatsApp: '919999999999',               // country code + number, no + or spaces
   musicFile: 'music.mp3'                      // put your own song in the same folder; if missing, a built-in melody plays
 };
