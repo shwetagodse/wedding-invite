@@ -14,13 +14,13 @@
 
 <style>
 :root{
-  --oxblood:#3a0a14;
-  --burgundy:#5c1426;
-  --emerald:#0e3b2e;
-  --gold:#c9a24b;
-  --gold-light:#ecd28f;
-  --ivory:#f6ecd9;
-  --ink:#2a0d14;
+  --oxblood:#526653;       /* deep hillside green */
+  --burgundy:#71856f;      /* soft sage */
+  --emerald:#e4eadf;       /* misty hill green */
+  --gold:#b9aa83;          /* muted champagne */
+  --gold-light:#fffdf5;    /* jasmine ivory */
+  --ivory:#fbf8ef;         /* warm ivory */
+  --ink:#465247;
   --display:'Cormorant Garamond','Times New Roman',serif;
   --body:'Jost','Helvetica Neue',Arial,sans-serif;
   --deva:'Tiro Devanagari Marathi','Noto Serif Devanagari',serif;
@@ -37,8 +37,10 @@ a{color:inherit}
 .gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden}
 .door{position:absolute;top:0;bottom:0;width:50.5%;
   background-color:var(--oxblood);
-  background-image:radial-gradient(circle,rgba(201,162,75,.28) 1px,transparent 1.6px),radial-gradient(ellipse at 50% 40%,#6a1a2d 0%,var(--oxblood) 70%);
-  background-size:22px 22px,100% 100%;
+  background-image:
+    radial-gradient(circle,rgba(255,253,245,.55) 1px,transparent 1.7px),
+    radial-gradient(ellipse at 50% 35%,#788b72 0%,var(--oxblood) 72%);
+  background-size:26px 26px,100% 100%;
   transition:transform 1.5s cubic-bezier(.77,0,.18,1)}
 .door.left{left:0;border-right:2px solid var(--gold)}
 .door.right{right:0;border-left:2px solid var(--gold)}
@@ -49,7 +51,7 @@ a{color:inherit}
 .gate h1 span{display:block;font-size:.55em;font-style:italic;font-weight:400;color:var(--ivory);margin:.15em 0}
 .btn{font:500 1rem/1 var(--body);letter-spacing:.06em;cursor:pointer;text-decoration:none;display:inline-block;
   padding:1rem 2.2rem;border-radius:999px;border:1.5px solid var(--gold);
-  background:linear-gradient(135deg,#d9b85e,#b78a2f);color:var(--oxblood);
+  background:linear-gradient(135deg,#fffdf5,#e9e3d2);color:#526653;
   box-shadow:0 6px 24px rgba(0,0,0,.35);transition:transform .2s ease,box-shadow .2s ease}
 .btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.45)}
 .btn:active{transform:translateY(0)}
@@ -85,15 +87,24 @@ p{font-size:1.05rem}
 /* ---------- Hero ---------- */
 .hero{min-height:100svh;padding:0;display:flex;flex-direction:column;justify-content:space-between;text-align:center;color:var(--ivory);
   background:
-    linear-gradient(180deg,rgba(58,10,20,.85) 0%,rgba(58,10,20,.05) 28%,rgba(58,10,20,.1) 52%,rgba(58,10,20,.92) 100%),
+    linear-gradient(180deg,rgba(54,72,55,.58) 0%,rgba(54,72,55,.05) 28%,rgba(54,72,55,.08) 52%,rgba(54,72,55,.82) 100%),
     url('couple-1.jpg') center 38%/cover no-repeat;
   background-color:var(--oxblood)}
+.hero::before{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:25%;
+  pointer-events:none;opacity:.78;
+  background:
+    radial-gradient(100% 115% at 8% 100%,#344d3b 0 48%,transparent 49%),
+    radial-gradient(100% 125% at 82% 110%,#405b45 0 50%,transparent 51%),
+    radial-gradient(100% 105% at 48% 115%,#60785d 0 48%,transparent 49%);
+}
+.hero-top,.hero-bottom{position:relative;z-index:1}
 .hero-top{padding:max(3.5rem,env(safe-area-inset-top)) 1.5rem 0}
 .hero-top .deva{font-family:var(--deva);font-size:1.2rem;color:var(--gold-light)}
 .hero-top p{font-family:var(--display);font-style:italic;font-size:1.3rem;margin-top:.4rem}
 .hero-bottom{padding:0 1.5rem 3rem}
 .names{font-family:var(--display);font-weight:500;font-size:clamp(3.4rem,17vw,6.4rem);line-height:.95;
-  background:linear-gradient(180deg,#f7e3a1 10%,#c9a24b 60%,#a87f2c);-webkit-background-clip:text;background-clip:text;color:transparent;
+  background:linear-gradient(180deg,#fffdf5 10%,#e9e3d2 60%,#c9c0a7);-webkit-background-clip:text;background-clip:text;color:transparent;
   filter:drop-shadow(0 3px 8px rgba(0,0,0,.45))}
 .names .amp{display:block;font-size:.42em;font-style:italic;font-weight:400;margin:.1em 0}
 .when{margin-top:1.4rem;font-family:var(--display);font-size:1.6rem;font-weight:500;color:var(--ivory)}
@@ -111,6 +122,39 @@ p{font-size:1.05rem}
 .count b{display:block;font-family:var(--display);font-weight:600;font-size:clamp(2rem,10vw,3rem);line-height:1;color:var(--gold-light);font-variant-numeric:tabular-nums}
 .count span{font-size:.85rem;opacity:.8}
 .days-big{font-family:var(--display);font-style:italic;font-size:1.35rem;color:var(--ivory)}
+
+
+/* ---------- December calendar ---------- */
+.calendar{
+  max-width:340px;margin:2rem auto 1rem;padding:1.25rem;
+  border:1px solid rgba(113,133,111,.35);border-radius:22px;
+  background:rgba(255,255,255,.58);
+  box-shadow:0 12px 35px rgba(70,82,71,.08);
+}
+.calendar-month{
+  font-family:var(--display);font-size:2rem;letter-spacing:.08em;
+  color:var(--oxblood);margin-bottom:1rem;
+}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.35rem}
+.calendar-grid span{
+  display:grid;place-items:center;min-height:36px;font-size:.95rem;
+  color:var(--ink);position:relative;
+}
+.calendar-grid .weekday{
+  min-height:28px;font-size:.72rem;font-weight:500;letter-spacing:.08em;
+  color:var(--burgundy);text-transform:uppercase;
+}
+.calendar-grid .empty{visibility:hidden}
+.calendar-grid .wedding-day{
+  color:#fffdf5;font-weight:600;
+  background:var(--burgundy);border-radius:50%;
+  box-shadow:0 0 0 4px rgba(185,170,131,.25);
+}
+.calendar-grid .wedding-day::after{
+  content:"♥";position:absolute;top:-10px;right:-3px;
+  color:#b88d82;font-size:.82rem;text-shadow:0 1px 2px #fff;
+}
+.calendar-note{font-family:var(--display);font-style:italic;color:var(--burgundy);font-size:1.15rem}
 
 /* ---------- Schedule ---------- */
 .timeline{position:relative;text-align:left;margin:2.4rem auto 0;padding-left:2rem;max-width:26rem}
@@ -317,9 +361,9 @@ footer p{opacity:.9}
   border-radius: 80% 10% 80% 10%;
   background: linear-gradient(
     135deg,
-    #fff0e9,
-    #e8a5aa 55%,
-    #c97886
+    #fffef8,
+    #f5f0df 55%,
+    #dce5d6
   );
   opacity: .75;
   animation: petal-fall linear forwards;
@@ -417,13 +461,21 @@ footer p{opacity:.9}
     <p>Mark your Calendar</p>
     <p>Because something beautiful is about to begin.</p>
 
-    <div class="date-display">
-      <span>DECEMBER</span>
-      <strong>13</strong>
-      <span>2026</span>
+    <div class="calendar" role="img" aria-label="December 2026 calendar, with a heart marking Sunday the 13th, the wedding day">
+      <div class="calendar-month">December 2026</div>
+      <div class="calendar-grid">
+        <span class="weekday">Sun</span><span class="weekday">Mon</span><span class="weekday">Tue</span>
+        <span class="weekday">Wed</span><span class="weekday">Thu</span><span class="weekday">Fri</span><span class="weekday">Sat</span>
+        <span class="empty">0</span><span class="empty">0</span>
+        <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span>
+        <span class="wedding-day" aria-label="13, wedding day">13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+        <span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span>
+        <span>27</span><span>28</span><span>29</span><span>30</span><span>31</span>
+      </div>
     </div>
-
-    <p class="save-day">SUNDAY</p>
+    <p class="calendar-note">A heart marks the day our forever begins</p>
+    <p class="save-day">SUNDAY · 13 DECEMBER</p>
   </div>
 </section>
 
@@ -658,10 +710,10 @@ musicBtn.addEventListener('click', () => {
     ctx.setTransform(dpr,0,0,dpr,0,0);
     ctx.globalCompositeOperation = 'source-over';
     const g = ctx.createLinearGradient(0,0,w,h);
-    g.addColorStop(0,'#e9cf86'); g.addColorStop(.35,'#b98f35'); g.addColorStop(.6,'#f1dc9c'); g.addColorStop(1,'#a67c2a');
+    g.addColorStop(0,'#fffdf5'); g.addColorStop(.35,'#c9c0a7'); g.addColorStop(.6,'#f5f0df'); g.addColorStop(1,'#a9b7a1');
     ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
     // diamond pattern
-    ctx.strokeStyle = 'rgba(90,50,10,.22)'; ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(82,102,83,.22)'; ctx.lineWidth = 1;
     const step = 26;
     for (let x=-h; x<w+h; x+=step){
       ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x+h,h); ctx.stroke();
@@ -673,7 +725,7 @@ musicBtn.addEventListener('click', () => {
       ctx.beginPath(); ctx.arc(Math.random()*w, Math.random()*h, Math.random()*1.8+.4, 0, 6.3); ctx.fill();
     }
     // text
-    ctx.fillStyle = 'rgba(58,10,20,.85)';
+    ctx.fillStyle = 'rgba(70,82,71,.88)';
     ctx.textAlign = 'center';
     ctx.font = '600 30px "Cormorant Garamond", serif';
     ctx.fillText('Scratch here', w/2, h/2 - 6);
@@ -806,3 +858,4 @@ musicBtn.addEventListener('click', () => {
 </script>
 </body>
 </html>
+in mark the calender, put a calender of december with heart on the nymber 13 to show wedding date instead of just plain text
