@@ -62,7 +62,7 @@ a{color:inherit}
 .gate.open .gate-content{opacity:0;pointer-events:none}
 
 /* ---------- Music button ---------- */
-.music{position:fixed;top:max(14px,env(safe-area-inset-top));right:14px;z-index:90;width:46px;height:46px;border-radius:50%;
+.music{position:fixed;bottom:max(20px,env(safe-area-inset-bottom));;right:18px;z-index:90;width:46px;height:46px;border-radius:50%;
   border:1.5px solid var(--gold);background:rgba(58,10,20,.75);backdrop-filter:blur(6px);color:var(--gold-light);
   display:none;place-items:center;cursor:pointer}
 .music.show{display:grid}
@@ -604,7 +604,7 @@ footer p{opacity:.9}
   <div>
     <div class="deva">॥ शुभ विवाह ॥</div>
     <div class="big">Shweta &amp; Nikhil</div>
-    <p>13 December 2026 &middot; Satara</p>
+    <p>13 December 2026</p>
     <p style="margin-top:.6rem;font-family:var(--display);font-style:italic;font-size:1.3rem">We can't wait to celebrate with you.</p>
   </div>
 </footer>
@@ -837,37 +837,30 @@ musicBtn.addEventListener('click', () => {
 })();
 
 
-/* ---------- Luxury falling petals ---------- */
+/* ---------- Continuous falling jasmine petals ---------- */
 
 (function () {
-  if (window.matchMedia(
-    '(prefers-reduced-motion: reduce)'
-  ).matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const container = document.createElement('div');
   container.id = 'petal-container';
   container.setAttribute('aria-hidden', 'true');
   document.body.appendChild(container);
 
-  let lastScroll = 0;
   let activePetals = 0;
 
   function createPetal() {
-    if (activePetals >= 18) return;
+    if (activePetals >= 24) return;
 
     const petal = document.createElement('span');
     petal.className = 'petal';
 
-    const duration = 5 + Math.random() * 5;
+    const duration = 6 + Math.random() * 5;
+    const size = 9 + Math.random() * 10;
 
     petal.style.left = Math.random() * 100 + 'vw';
     petal.style.animationDuration = duration + 's';
-    petal.style.animationDelay = Math.random() * .5 + 's';
-    petal.style.opacity = .35 + Math.random() * .45;
-    petal.style.transform =
-      'rotate(' + Math.random() * 360 + 'deg)';
-
-    const size = 8 + Math.random() * 9;
+    petal.style.opacity = 0.45 + Math.random() * 0.4;
     petal.style.width = size + 'px';
     petal.style.height = size * 1.4 + 'px';
 
@@ -880,20 +873,15 @@ musicBtn.addEventListener('click', () => {
     }, { once: true });
   }
 
-  window.addEventListener('scroll', () => {
-    const now = Date.now();
+  // Start with petals already falling
+  for (let i = 0; i < 12; i++) {
+    setTimeout(createPetal, i * 250);
+  }
 
-    if (now - lastScroll < 180) return;
-
-    lastScroll = now;
-
-    for (let i = 0; i < 3; i++) {
-      createPetal();
-    }
-  }, { passive: true });
+  // Keep creating new petals automatically
+  setInterval(createPetal, 550);
 
 })();
-
 </script>
 </body>
 </html>
