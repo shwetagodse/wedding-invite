@@ -166,6 +166,190 @@ footer p{opacity:.9}
   .door,.gate-content,.card canvas,.card-cap{transition-duration:.01s}
   .down,.spark{animation:none}
 }
+
+
+/* ---------- Minimal luxury refinements ---------- */
+
+.ganesha {
+  font-family: serif;
+  font-size: 2.5rem;
+  color: var(--gold-light);
+  margin-bottom: .35rem;
+  line-height: 1.2;
+}
+
+.deva {
+  letter-spacing: .04em;
+}
+
+.eyebrow {
+  font-size: .75rem !important;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem !important;
+}
+
+.gate-note {
+  color: var(--ivory);
+  font-size: .9rem;
+  margin: 0 0 1.5rem;
+}
+
+.gate h1 {
+  letter-spacing: .08em;
+}
+
+.hero-top {
+  padding-top: max(4rem, env(safe-area-inset-top));
+}
+
+.hero-kicker {
+  letter-spacing: .18em;
+  font-size: .75rem;
+  margin-bottom: 1rem;
+}
+
+.hero-scroll {
+  font-size: .85rem;
+  letter-spacing: .08em;
+  margin-top: 1.5rem;
+  opacity: .85;
+}
+
+.family-names {
+  font-family: var(--display);
+  font-size: 2rem;
+  letter-spacing: .16em;
+  color: var(--burgundy);
+  margin: 1.5rem 0;
+}
+
+.date-display {
+  border-top: 1px solid var(--gold);
+  border-bottom: 1px solid var(--gold);
+  max-width: 240px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--gold-light);
+}
+
+.date-display span {
+  letter-spacing: .3em;
+  font-size: .85rem;
+}
+
+.date-display strong {
+  font-family: var(--display);
+  font-size: 6rem;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.save-day {
+  letter-spacing: .3em;
+  font-size: .85rem;
+}
+
+.event-number {
+  font-family: var(--display);
+  color: #aa812f;
+  font-size: 1.1rem;
+  letter-spacing: .12em;
+}
+
+.guest-invite h3 {
+  font-family: var(--display);
+  font-size: 1.8rem;
+  color: var(--burgundy);
+  margin-bottom: 1rem;
+}
+
+.footer-content {
+  max-width: 34rem;
+  margin: auto;
+  padding-top: 3rem;
+}
+
+.footer-intro {
+  font-family: var(--display);
+  font-size: 1.3rem;
+  margin-top: 1rem;
+}
+
+.footer-message {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.footer-blessing {
+  font-size: .95rem;
+  margin-top: .8rem;
+}
+
+.footer-family {
+  font-family: var(--display);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  margin-top: 2rem;
+  color: var(--gold-light);
+}
+
+/* ---------- Falling flower petals ---------- */
+
+#petal-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 80;
+}
+
+.petal {
+  position: absolute;
+  top: -35px;
+  width: 12px;
+  height: 17px;
+  border-radius: 80% 10% 80% 10%;
+  background: linear-gradient(
+    135deg,
+    #fff0e9,
+    #e8a5aa 55%,
+    #c97886
+  );
+  opacity: .75;
+  animation: petal-fall linear forwards;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,.08));
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0,-20px,0) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: .8;
+  }
+  50% {
+    transform: translate3d(45px,50vh,0) rotate(200deg);
+  }
+  100% {
+    transform: translate3d(-35px,110vh,0) rotate(480deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petal {
+    animation: none;
+    display: none;
+  }
+}
+
 </style>
 </head>
 <body class="locked">
@@ -560,6 +744,65 @@ musicBtn.addEventListener('click', () => {
   document.getElementById('yesBtn').addEventListener('click', () => send(true));
   document.getElementById('noBtn').addEventListener('click', () => send(false));
 })();
+
+
+/* ---------- Luxury falling petals ---------- */
+
+(function () {
+  if (window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches) return;
+
+  const container = document.createElement('div');
+  container.id = 'petal-container';
+  container.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(container);
+
+  let lastScroll = 0;
+  let activePetals = 0;
+
+  function createPetal() {
+    if (activePetals >= 18) return;
+
+    const petal = document.createElement('span');
+    petal.className = 'petal';
+
+    const duration = 5 + Math.random() * 5;
+
+    petal.style.left = Math.random() * 100 + 'vw';
+    petal.style.animationDuration = duration + 's';
+    petal.style.animationDelay = Math.random() * .5 + 's';
+    petal.style.opacity = .35 + Math.random() * .45;
+    petal.style.transform =
+      'rotate(' + Math.random() * 360 + 'deg)';
+
+    const size = 8 + Math.random() * 9;
+    petal.style.width = size + 'px';
+    petal.style.height = size * 1.4 + 'px';
+
+    container.appendChild(petal);
+    activePetals++;
+
+    petal.addEventListener('animationend', () => {
+      petal.remove();
+      activePetals--;
+    }, { once: true });
+  }
+
+  window.addEventListener('scroll', () => {
+    const now = Date.now();
+
+    if (now - lastScroll < 180) return;
+
+    lastScroll = now;
+
+    for (let i = 0; i < 3; i++) {
+      createPetal();
+    }
+  }, { passive: true });
+
+})();
+
 </script>
 </body>
 </html>
