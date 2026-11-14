@@ -252,14 +252,6 @@ footer p{opacity:.9}
 
 /* ---------- Minimal luxury refinements ---------- */
 
-.ganesha {
-  font-family: serif;
-  font-size: 2.5rem;
-  color: var(--gold-light);
-  margin-bottom: .35rem;
-  line-height: 1.2;
-}
-
 .deva {
   letter-spacing: .04em;
 }
@@ -381,69 +373,60 @@ footer p{opacity:.9}
   color: var(--gold-light);
 }
 
-/* ---------- Falling flower petals ---------- */
+#petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:60}
 
-#petal-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 80;
+.replay{margin-top:2rem;background:transparent;color:var(--gold-light);border:1px solid var(--gold-light);box-shadow:none;font-size:.9rem;padding:.85rem 1.8rem}
+.replay:hover{background:rgba(255,253,245,.15);box-shadow:none}
+
+.green .link-btn{color:#304735}
+
+.ganesha-img{display:block;width:114px;height:114px;object-fit:cover;border-radius:50%;
+  border:2px solid var(--gold);margin:0 auto .8rem;box-shadow:0 4px 18px rgba(0,0,0,.25)}
+.gate .ganesha-img{position:relative;top:-24px}
+.hero-top .ganesha-img{width:94px;height:94px}
+.hero-top{padding-top:max(2rem,env(safe-area-inset-top))}
+
+.gate-top{position:absolute;top:max(2rem,env(safe-area-inset-top));left:0;right:0;text-align:center;z-index:2;transition:opacity .6s ease}
+.gate.open .gate-top{opacity:0;pointer-events:none}
+.gate .gate-top .ganesha-img{position:static;margin-bottom:.7rem}
+.gate .gate-top .deva{margin-bottom:0}
+
+.hero-top p{
+  font-size:1.25rem;
+  letter-spacing:.1em;
+  line-height:1.3;
+  max-width:18rem;
+  margin:.7rem auto 0;
+  text-wrap:balance;
 }
 
-.petal {
-  position: absolute;
-  top: -35px;
-  width: 12px;
-  height: 17px;
-  border-radius: 80% 10% 80% 10%;
-  background: linear-gradient(
-    135deg,
-    #fffef8,
-    #f5f0df 55%,
-    #dce5d6
-  );
-  opacity: .75;
-  animation: petal-fall linear forwards;
-  filter: drop-shadow(0 2px 2px rgba(0,0,0,.08));
-}
-
-@keyframes petal-fall {
-  0% {
-    transform: translate3d(0,-20px,0) rotate(0deg);
-    opacity: 0;
-  }
-  12% {
-    opacity: .8;
-  }
-  50% {
-    transform: translate3d(45px,50vh,0) rotate(200deg);
-  }
-  100% {
-    transform: translate3d(-35px,110vh,0) rotate(480deg);
-    opacity: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .petal {
-    animation: none;
-    display: none;
-  }
-}
+.message h3{
+  font-family:var(--display);
+  font-weight:400;
+  font-style:italic;
+  font-size:1.4rem;
+  letter-spacing:.03em;
+  margin:-1rem 0 .8rem;}
 
 </style>
 </head>
 <body class="locked">
 
+<canvas id="petals" aria-hidden="true"></canvas>
+
+
 <!-- ================= GATE ================= -->
 <div class="gate" id="gate">
   <div class="door left"></div>
   <div class="door right"></div>
-  <div class="gate-content">
-    <div class="ganesha">ॐ</div>
+
+  <div class="gate-top">
+    <img class="ganesha-img" src="ganesha.jpg" alt="Lord Ganesha">
     <div class="deva">॥ श्री गणेशाय नमः ॥</div>
-    <div class="deva">॥ शुभ विवाह ॥</div>
+  </div>
+
+  <div class="gate-content">    
+    <div class="deva">WEDDING INVITATION</div>
     <!-- <p class="small">WE ARE GETTING MARRIED</p> -->
     <h1>Shweta<span>&amp;</span>Nikhil</h1>
     <button class="btn" id="openBtn" type="button">Open Invitation</button>
@@ -459,8 +442,8 @@ footer p{opacity:.9}
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
   <div class="hero-top">
-    <!-- <div class="ganesha">ॐ</div> -->
-    <div class="deva">॥ श्री गणेशाय नमः ॥</div>
+    <img class="ganesha-img" src="ganesha.jpg" alt="Lord Ganesha">
+    <!-- <div class="deva">॥ श्री गणेशाय नमः ॥</div> -->
     <p>WE ARE GETTING MARRIED</p>
   </div>
   <div class="hero-bottom">
@@ -482,11 +465,12 @@ footer p{opacity:.9}
 <section class="light message" id="message">
   <div class="wrap">
     <svg class="orn" viewBox="0 0 150 22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 11h56M92 11h56"/><path d="M75 2l9 9-9 9-9-9z" fill="currentColor"/><circle cx="62" cy="11" r="2" fill="currentColor"/><circle cx="88" cy="11" r="2" fill="currentColor"/></svg>
-    <h2>You are invited</h2>
+    <h3>Together With Their Families</h3>
     <!-- EDIT: invitation message -->
-    <p>Two hearts, two families, one beautiful beginning.</p>
-    <p>We joyfully invite you to bless Shweta and Nikhil as they begin their new journey together.</p>
-    <p>Your presence will make our celebration complete.</p>
+     <h2>GODSE & YADAV</h2>
+    <p>request the pleasure of your company as they celebrate the beginning of their forever together.</p>
+    <!-- <p>We joyfully invite you to bless Shweta and Nikhil as they begin their new journey together.</p> -->
+    <p>Your presence and blessings would make this beautiful celebration even more special.</p>
     <!-- <p class="sign">With love and warm regards,</p>
     <p class="sign">Sanjay Godse & Anita Godse</p> -->
   </div>
@@ -498,7 +482,6 @@ footer p{opacity:.9}
   <div class="wrap">
     <p class="eyebrow">A BEAUTIFUL BEGINNING</p>
     <h2>Save the Date</h2>
-    <p>Mark your Calendar</p>
     <p>Because something beautiful is about to begin.</p>
 
     <div class="calendar" role="img" aria-label="December 2026 calendar, with a heart marking Sunday the 13th, the wedding day">
@@ -545,11 +528,14 @@ footer p{opacity:.9}
         <h3>Haldi Ceremony</h3>
         <div class="t">10 AM</div>
         <p>Turmeric Tales</p>
+        <p>Hotel Vitthal Mangalam, Satara</p>
       </div>
       <div class="event">
         <h3>Wedding Ceremony</h3>
         <div class="t">5:46 PM</div>
         <p>Sacred vows and the blessings of our elders.</p>
+        <p>Hotel Vitthal Mangalam, Satara</p>
+
       </div>
     </div>
   </div>
@@ -604,11 +590,13 @@ footer p{opacity:.9}
 <footer>
   <div>
     <!-- <div class="deva">॥ शुभ विवाह ॥</div> -->
-    <div class="big">Shweta &amp; Nikhil</div>
-    <p>13 December 2026</p>
+    <!-- <div class="big">Shweta &amp; Nikhil</div>
+    <p>13 December 2026</p> -->
     <p style="margin-top:.6rem;font-family:var(--display);font-style:italic;font-size:1.3rem">We can't wait to celebrate with you.</p>
     <p>With love and warm regards,</p>
     <p>Mr. Sanjay Godse & Mrs. Anita Godse</p>
+
+    <button class="btn replay" id="replayBtn" type="button">Replay Opening</button>
   </div>
 </footer>
 
@@ -617,7 +605,7 @@ footer p{opacity:.9}
    EDIT THESE
    ===================================================== */
 const CONFIG = {
-  weddingDate: '2026-12-13T10:00:00+05:30',   // ceremony start (India time)
+  weddingDate: '2026-12-13T17:46:00+05:30',   // ceremony start (India time)
   rsvpWhatsApp: '919999999999',               // country code + number, no + or spaces
   musicFile: 'music.mp3'                      // put your own song in the same folder; if missing, a built-in melody plays
 };
@@ -825,66 +813,64 @@ musicBtn.addEventListener('click', () => {
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { if (!touched && !done) paintFoil(); });
 })();
 
-/* ---------- RSVP via WhatsApp ---------- */
+
+/* Falling petals: denser and faster while the guest scrolls */
 (function(){
-  const nameEl = document.getElementById('guestName');
-  function send(attending){
-    const name = nameEl.value.trim() || 'A guest';
-    const msg = attending
-      ? `Hello! This is ${name}. I will be attending Shweta & Nikhil's wedding on 13 December 2026 in Satara.`
-      : `Hello! This is ${name}. Sorry, I won't be able to attend Shweta & Nikhil's wedding on 13 December 2026, but my best wishes are with you.`;
-    window.open('https://wa.me/' + CONFIG.rsvpWhatsApp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  const cv = document.getElementById('petals'), ctx = cv.getContext('2d');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const colors = ['#e8c4bd','#d9a9a0','#c99a90','#d8c79a','#fffdf5','#f3e3df'];
+  let W, H, petals = [], running = false, last = 0, boost = 0, lastY = scrollY, acc = 0;
+
+  function size(){ const d = Math.min(devicePixelRatio||1, 2); W = innerWidth; H = innerHeight;
+    cv.width = W*d; cv.height = H*d; ctx.setTransform(d,0,0,d,0,0); }
+  function spawn(anywhere){
+    const x = Math.random()*W;
+    petals.push({x, x0:x, y: anywhere ? Math.random()*H : -20, s: 6+Math.random()*7,
+      vy: 20+Math.random()*22, amp: 18+Math.random()*32, ph: Math.random()*6.28, sp: .5+Math.random()*1.1,
+      rot: Math.random()*6.28, vr: (Math.random()-.5)*1, fl: Math.random()*6.28, vf: .8+Math.random()*1.2,
+      c: colors[(Math.random()*colors.length)|0], t: 0});
   }
-  document.getElementById('yesBtn').addEventListener('click', () => send(true));
-  document.getElementById('noBtn').addEventListener('click', () => send(false));
+  function draw(p){
+    const s = p.s;
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot); ctx.scale(1, .35+Math.abs(Math.cos(p.fl))*.65);
+    ctx.globalAlpha = .88; ctx.fillStyle = p.c; ctx.beginPath(); ctx.moveTo(0,-s);
+    ctx.bezierCurveTo(s*.95,-s*.6, s*.85,s*.7, 0,s);
+    ctx.bezierCurveTo(-s*.85,s*.7, -s*.95,-s*.6, 0,-s); ctx.fill(); ctx.globalAlpha = .55; ctx.strokeStyle = '#b9aa83'; ctx.lineWidth = .8; ctx.stroke(); ctx.restore();;
+  }
+  function frame(now){
+    const dt = Math.min((now-last)/1000, .05); last = now;
+    boost *= Math.exp(-dt*1.6);
+    const speed = 1 + boost*1.2;
+    acc += dt*(.5 + boost*5);
+    while (acc >= 1 && petals.length < 26){ spawn(false); acc -= 1; }
+    if (acc >= 1) acc = 0;
+    ctx.clearRect(0,0,W,H);
+    for (let i=petals.length-1; i>=0; i--){
+      const p = petals[i]; p.t += dt; p.y += p.vy*speed*dt;
+      p.x = p.x0 + Math.sin(p.t*p.sp + p.ph)*p.amp; p.rot += p.vr*dt; p.fl += p.vf*dt;
+      if (p.y > H+24){ petals.splice(i,1); continue; }
+      draw(p);
+    }
+    requestAnimationFrame(frame);
+  }
+  addEventListener('scroll', () => { boost = Math.min(1, boost + Math.abs(scrollY-lastY)/500); lastY = scrollY; }, {passive:true});
+  addEventListener('resize', size); size();
+
+  function start(){ if (running) return; running = true; last = performance.now();
+    for (let i=0;i<6;i++) spawn(true); requestAnimationFrame(frame); }
+  // petals begin when the guest taps "Open Invitation"
+  document.getElementById('openBtn').addEventListener('click', start);
 })();
 
+/* ---------- Replay opening ---------- */
+document.getElementById('replayBtn').addEventListener('click', () => {
+  window.scrollTo({top:0, behavior:'instant'});
+  document.body.classList.add('locked');
+  gate.style.display = 'grid';
+  void gate.offsetWidth;          // lets the browser register the open state first
+  gate.classList.remove('open');  // the doors close again
+});
 
-/* ---------- Continuous falling jasmine petals ---------- */
-
-(function () {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const container = document.createElement('div');
-  container.id = 'petal-container';
-  container.setAttribute('aria-hidden', 'true');
-  document.body.appendChild(container);
-
-  let activePetals = 0;
-
-  function createPetal() {
-    if (activePetals >= 24) return;
-
-    const petal = document.createElement('span');
-    petal.className = 'petal';
-
-    const duration = 6 + Math.random() * 5;
-    const size = 9 + Math.random() * 10;
-
-    petal.style.left = Math.random() * 100 + 'vw';
-    petal.style.animationDuration = duration + 's';
-    petal.style.opacity = 0.45 + Math.random() * 0.4;
-    petal.style.width = size + 'px';
-    petal.style.height = size * 1.4 + 'px';
-
-    container.appendChild(petal);
-    activePetals++;
-
-    petal.addEventListener('animationend', () => {
-      petal.remove();
-      activePetals--;
-    }, { once: true });
-  }
-
-  // Start with petals already falling
-  for (let i = 0; i < 12; i++) {
-    setTimeout(createPetal, i * 250);
-  }
-
-  // Keep creating new petals automatically
-  setInterval(createPetal, 550);
-
-})();
 </script>
 </body>
 </html>
